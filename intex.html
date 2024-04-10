@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wordle Game</title>
+    <link rel="stylesheet" type="text/css" href="gameBoard.css">
+</head>
+<body>
+    <div id="game-board"> </div>
+    <form id="guess-form" onsubmit="event.preventDefault(); makeGuess();">
+        <input type="text" id="guess-input" maxlength="5">
+        <button type="submit">Guess</button>
+    </form>
+
+    <script src="guessing.js"></script>
+</body>
+</html>
