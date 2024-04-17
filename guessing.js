@@ -21,8 +21,8 @@ fetch('wordList.txt')
         var wordList = data.split('\n');
         wordList = wordList.filter(word => word.trim().length === 5);
         if (wordList.length === 0) {
-            console.error("No valid words found in the word list file.");
-            alert("No valid words found in the word list file. Using default word 'apple'.");
+            console.error("No words found from wordList.txt.");
+            alert("Using default word 'apple'.");
             wordToGuess = "apple";
         } else {
             wordToGuess = wordList[Math.floor(Math.random() * wordList.length)].trim().toUpperCase();
@@ -40,7 +40,7 @@ function makeGuess() {
     }
     var guess = document.getElementById("guess-input").value.toUpperCase();
     if (guess.length !== 5) {
-        alert("Enter a 5-letter word.");
+        alert("Enter a 5 letter word.");
         return;
     }
     
@@ -48,7 +48,7 @@ function makeGuess() {
     
     var row = document.querySelector('#game-board .row:nth-child(' + (guessCount + 1) + ')');
     if (!row) {
-        alert("Error: Row not found.");
+        alert("GAMEBOARD ROW ERROR");
         return;
     }
 
@@ -114,3 +114,4 @@ function handleKeyPress(event) {
 
 // FOR ENTER KEY GUESS INPUT
 document.getElementById("guess-input").addEventListener("keydown", handleKeyPress);
+
