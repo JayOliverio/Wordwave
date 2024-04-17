@@ -3,14 +3,15 @@
 <head>
     <title>Wordle Game</title>
     <link rel="stylesheet" type="text/css" href="gameBoard.css">
+    <link rel="stylesheet" type="text/css" href="keyboard.css">
 </head>
 <body>
-    <div id="game-board"> </div>
+    <div id="game-board"></div>    
     <form id="guess-form" onsubmit="event.preventDefault(); makeGuess();">
         <input type="text" id="guess-input" maxlength="5">
         <button type="submit">Guess</button>
     </form>
-
+    <div id="keyboard"></div>
     <script src="guessing.js"></script>
 </body>
 </html>
