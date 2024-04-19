@@ -1,3 +1,11 @@
+/*
+    File: keyboard.css
+    Author: Jacoby Oliverio
+
+    Description: CSS file for styles of the dynamic keyboard interface.
+*/
+
+/* Styling for keyboard container */
 #keyboard {
     display: flex;
     flex-direction: column;
@@ -5,12 +13,14 @@
     margin-top: 20px;
 }
 
+/* Styles for each row of keys */
 .keyboard-row {
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
 }
 
+/* Styling for each individual key */
 .key {
     width: 40px;
     height: 40px;
