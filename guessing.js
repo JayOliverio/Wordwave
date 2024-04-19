@@ -1,3 +1,13 @@
+/*
+    File: guessing.js
+    Author: Jacoby Oliverio
+
+    Description: This JavaScript file impliments the core 
+    functionalities of the word guessing game. Including
+    random word selection, guessing handling, color changing
+    functionality, and other core requirements.
+*/
+
 // Variable for the word to be guessed
 var wordToGuess = "";
 // Counts number of guesses from the user
