@@ -1,6 +1,10 @@
 var wordToGuess = "";
 var guessCount = 0;
 
+var green_letters = "";
+var yellow_letters = "";
+var gray_letters = "";
+
 if (!document.getElementById('game-board').innerHTML.trim()) {
     for(var j = 0; j < 5; j++) {
         var row = document.createElement('div');
@@ -56,14 +60,29 @@ function makeGuess() {
     for (var i = 0; i < 5; i++) {
         var letter = guess[i];
         if (wordToGuessUpper[i] === letter) {
+            if (!green_letters.includes(letter)) {
+                green_letters += letter;
+            }
             tiles[i].style.backgroundColor = 'green';
         } else if (wordToGuessUpper.includes(letter)) {
+            if (!yellow_letters.includes(letter)) {
+                yellow_letters += letter;
+            }
             tiles[i].style.backgroundColor = 'yellow';
         } else {
+            if (!gray_letters.includes(letter)) {
+                gray_letters += letter;
+            }
             tiles[i].style.backgroundColor = 'gray';
         }
         tiles[i].innerText = letter;
     }
+    console.log("Green Letters: " + green_letters);
+    console.log("Yellow Letters: " + yellow_letters);
+    console.log("Gray Letters: " + gray_letters);
+
+    generateKeyboard();
+
     guessCount++;
     document.getElementById('guess-input').value = '';
 }    
@@ -74,6 +93,7 @@ function insertLetter(letter) {
 
 function generateKeyboard() {
     var keyboard = document.getElementById('keyboard');
+    keyboard.innerHTML = '';
     var rows = ["QWERTYUIOP", "ASDFGHJKL","ZXCVBNM"];
 
     rows.forEach(rowString => {
@@ -92,10 +112,22 @@ function generateKeyboard() {
 function createKey(letter) {
     var button = document.createElement('button');
     button.className = 'key';
+
     button.textContent = letter;
     button.addEventListener('click', function() {
         insertLetter(letter);
     });
+
+    if (green_letters.includes(letter)) {
+        console.log("green_letters includes " + letter);
+        button.className = 'green-key';
+    } else if (yellow_letters.includes(letter)) {
+        console.log("yellow_letters includes: " + letter);
+        button.className = 'yellow-key';
+    } else if (gray_letters.includes(letter)) {
+        button.className = 'gray-key'
+    }
+
     return button;
 }
 
