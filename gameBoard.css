@@ -1,19 +1,30 @@
+/*
+    File: gameBoard.css
+    Author: Jacoby Oliverio
+
+    Description: CSS file for styles of the gameboard interface.
+*/
+
+/* Text Styles */
 body, input, button {
     font-family: 'Roboto', sans-serif;
 }
 
+/* Styling for gameboard */
 #game-board {
     width: 300px;
     margin: 0 auto;
     margin-bottom: 10px;
 }
 
+/* Styling for each row */
 .row {
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
 }
 
+/* Style for each gameboard tile */
 .tile {
     width: 50px;
     height: 50px;
@@ -27,6 +38,7 @@ body, input, button {
     color: white;
 }
 
+/* Styling for the guess input*/
 #guess-form {
     display: flex;
     justify-content: center;
