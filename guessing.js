@@ -20,7 +20,7 @@ var gray_letters = "";
 // Checks if gameboard is loaded, loads it if not
 if (!document.getElementById('game-board').innerHTML.trim()) {
     // Generates gameboard
-    for(var j = 0; j < 5; j++) {
+    for(var j = 0; j < 6; j++) {
         var row = document.createElement('div');
         row.className = 'row';
         for(var i = 0; i < 5; i++) {
