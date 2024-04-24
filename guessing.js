@@ -75,10 +75,6 @@ function makeGuess() {
         alert("Enter a 5 letter word.");
         return;
     }
-
-    if (guess === "APPLE") {
-        changeBackground(blue);
-    }
     
     // To upper for compatibility with keyboard
     var wordToGuessUpper = wordToGuess.toUpperCase();
@@ -187,10 +183,6 @@ function handleKeyPress(event) {
         event.preventDefault();
         makeGuess();
     }
-}
-
-function changeBackground(color) {
-    document.body.style.background.color(color);
 }
 
 // event listener for enter key press for guess field
