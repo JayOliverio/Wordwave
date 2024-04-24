@@ -75,6 +75,10 @@ function makeGuess() {
         alert("Enter a 5 letter word.");
         return;
     }
+
+    if (guess === "APPLE") {
+        changeBackground(blue);
+    }
     
     // To upper for compatibility with keyboard
     var wordToGuessUpper = wordToGuess.toUpperCase();
@@ -107,10 +111,8 @@ function makeGuess() {
         }
         tiles[i].innerText = letter;
     }
-    console.log("Green Letters: " + green_letters);
-    console.log("Yellow Letters: " + yellow_letters);
-    console.log("Gray Letters: " + gray_letters);
 
+    // remake the keyboard with the new colors
     generateKeyboard();
 
     guessCount++;
@@ -154,11 +156,10 @@ function createKey(letter) {
         insertLetter(letter);
     });
 
+    // colored keys
     if (green_letters.includes(letter)) {
-        console.log("green_letters includes " + letter);
         button.className = 'green-key';
     } else if (yellow_letters.includes(letter)) {
-        console.log("yellow_letters includes: " + letter);
         button.className = 'yellow-key';
     } else if (gray_letters.includes(letter)) {
         button.className = 'gray-key'
@@ -186,6 +187,10 @@ function handleKeyPress(event) {
         event.preventDefault();
         makeGuess();
     }
+}
+
+function changeBackground(color) {
+    document.body.style.background.color(color);
 }
 
 // event listener for enter key press for guess field
