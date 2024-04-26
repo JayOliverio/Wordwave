@@ -17,10 +17,19 @@ var green_letters = "";
 var yellow_letters = "";
 var gray_letters = "";
 
+// Tracks points
+var points = 0;
+
+// Tracks letters revealed by hint so buying new hint reveals new letter
+var revealedHintIndices = [];
+
+//Loads local saved data
+loadPoints();
+
 // Checks if gameboard is loaded, loads it if not
 if (!document.getElementById('game-board').innerHTML.trim()) {
     // Generates gameboard
-    for(var j = 0; j < 5; j++) {
+    for(var j = 0; j < 6; j++) {
         var row = document.createElement('div');
         row.className = 'row';
         for(var i = 0; i < 5; i++) {
@@ -64,7 +73,7 @@ fetch('wordList.txt')
  */
 function makeGuess() {
     // Checks if max guesses have been reached
-    if (guessCount >= 5) {
+    if (guessCount >= 6) {
         alert("You've reached the maximum number of guesses.");
         return;
     }
@@ -87,6 +96,7 @@ function makeGuess() {
 
     // Color changing functionality
     var tiles = row.querySelectorAll('.tile');
+    var correctGuess = true;
     for (var i = 0; i < 5; i++) {
         var letter = guess[i];
         if (wordToGuessUpper[i] === letter) {
@@ -99,17 +109,24 @@ function makeGuess() {
                 yellow_letters += letter;
             }
             tiles[i].style.backgroundColor = 'yellow';
+            correctGuess = false;
         } else {
             if (!gray_letters.includes(letter)) {
                 gray_letters += letter;
             }
             tiles[i].style.backgroundColor = 'gray';
+            correctGuess = false;
         }
         tiles[i].innerText = letter;
     }
     console.log("Green Letters: " + green_letters);
     console.log("Yellow Letters: " + yellow_letters);
     console.log("Gray Letters: " + gray_letters);
+
+    // If the guess was correct, award points
+    if (correctGuess) {
+        updatePoints(3);
+    }
 
     generateKeyboard();
 
@@ -186,6 +203,64 @@ function handleKeyPress(event) {
         event.preventDefault();
         makeGuess();
     }
+}
+
+/**
+ * Function to update the points by an inputed amount
+ * @param {*} score 
+ */
+function updatePoints(score) {
+    points += score;
+    // Save points to localStorage
+    localStorage.setItem('points', points);
+    displayPoints();
+}
+
+/**
+ * Function to update the points display
+ */
+function displayPoints() {
+    document.getElementById('points-display').innerText = "Points: " + points;
+}
+
+/**
+ * Function to load the saved points
+ */
+function loadPoints() {
+    var savedPoints = localStorage.getItem('points');
+    if (savedPoints !== null) {
+        points = parseInt(savedPoints);
+    }
+    displayPoints();
+}
+
+function buyHint() {
+    // Check if the user has enough points to buy a hint
+    if (points < 5) {
+        alert("You don't have enough points to buy a hint.");
+        return;
+    }
+
+    // Deduct 5 points for buying a hint
+    updatePoints(-5);
+
+    // Generate a random index that hasn't been revealed yet
+    var randomIndex;
+    do {
+        randomIndex = Math.floor(Math.random() * wordToGuess.length);
+    } while (revealedHintIndices.includes(randomIndex));
+
+    // Add the index to the revealed hint indices array
+    revealedHintIndices.push(randomIndex);
+
+    // Get the letter at the random index in the word
+    var hintLetter = wordToGuess[randomIndex];
+
+    // Highlight the tile corresponding to the hint letter
+    var hintRow = document.querySelector('#game-board .row:nth-child(' + (guessCount + 1) + ')');
+    var hintTile = hintRow.querySelectorAll('.tile')[randomIndex];
+    hintTile.innerText = hintLetter;
+    hintTile.style.backgroundColor = 'lightblue';
 }
 
 // event listener for enter key press for guess field

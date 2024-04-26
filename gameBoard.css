@@ -43,3 +43,27 @@ body, input, button {
     display: flex;
     justify-content: center;
 }
+
+/* Styling for the points display under keyboard */
+#points-display {
+    display: flex;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+}
+
+#hint {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#hint-button {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    background-color: #46c87a;
+    border-color: #089541;
+    border-radius: 5px;
+    padding: 8px;
+}
+
