@@ -119,9 +119,6 @@ function makeGuess() {
         }
         tiles[i].innerText = letter;
     }
-    console.log("Green Letters: " + green_letters);
-    console.log("Yellow Letters: " + yellow_letters);
-    console.log("Gray Letters: " + gray_letters);
 
     // If the guess was correct, award points
     if (correctGuess) {
@@ -171,11 +168,10 @@ function createKey(letter) {
         insertLetter(letter);
     });
 
+    // colored keys
     if (green_letters.includes(letter)) {
-        console.log("green_letters includes " + letter);
         button.className = 'green-key';
     } else if (yellow_letters.includes(letter)) {
-        console.log("yellow_letters includes: " + letter);
         button.className = 'yellow-key';
     } else if (gray_letters.includes(letter)) {
         button.className = 'gray-key'
