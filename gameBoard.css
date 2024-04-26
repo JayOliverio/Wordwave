@@ -52,12 +52,13 @@ body, input, button {
     font-size: 20px;
 }
 
+/* Styling for button container */
 #hint {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
-
+/* Styling for button itself */
 #hint-button {
     font-family: 'Roboto', sans-serif;
     font-weight: bold;

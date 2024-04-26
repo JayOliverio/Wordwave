@@ -234,6 +234,10 @@ function loadPoints() {
     displayPoints();
 }
 
+/**
+ * Function to use hint button
+ * @returns
+ */
 function buyHint() {
     // Check if the user has enough points to buy a hint
     if (points < 5) {
