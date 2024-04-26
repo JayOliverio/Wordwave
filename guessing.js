@@ -84,6 +84,12 @@ function makeGuess() {
         alert("Enter a 5 letter word.");
         return;
     }
+
+    // check for illegal characters
+    if (!guess.match(/^[a-z]+$/i)) {
+        alert("Word contains illegal characters");
+        return;
+    }
     
     // To upper for compatibility with keyboard
     var wordToGuessUpper = wordToGuess.toUpperCase();
