@@ -305,6 +305,9 @@ function loadStreak() {
     displayStreak();
 }
 
+/**
+ * Update the streak count
+ */
 function updateStreak() {
     streak += 1;
     // save to localstorage
@@ -312,20 +315,26 @@ function updateStreak() {
     displayStreak();
 }
 
+/**
+ * Display the streak on screen
+ */
 function displayStreak() {
     var streakDisplay = document.getElementById('streak-display');
     if (streak > 0) {
-        streakDisplay.style.display = 'block'; // Set to block when streak is greater than 0
+        streakDisplay.style.display = 'block';
         streakDisplay.innerText = "Streak: " + streak;
     } else {
-        streakDisplay.style.display = 'none'; // Set to none when streak is 0
+        streakDisplay.style.display = 'none';
     }
 }
 
+/**
+ * Game lost, reset the streak
+ */
 function resetStreak() {
     console.log("resetStreak() called");
     streak = 0;
-    localStorage.setItem('streak', streak); // Update localStorage here
+    localStorage.setItem('streak', streak);
     displayStreak();
 }
 
