@@ -72,6 +72,7 @@ fetch('wordList.txt')
  * @returns 
  */
 function makeGuess() {
+
     // Checks if max guesses have been reached
     if (guessCount >= 6) {
         alert("You've reached the maximum number of guesses.");
@@ -135,6 +136,7 @@ function makeGuess() {
 
     guessCount++;
     document.getElementById('guess-input').value = '';
+
 }    
 
 /**
@@ -268,6 +270,12 @@ function buyHint() {
     hintTile.innerText = hintLetter;
     hintTile.style.backgroundColor = 'lightblue';
 }
+
+const get = {
+    answer() {
+        console.log(wordToGuess);
+    },
+};
 
 // event listener for enter key press for guess field
 document.getElementById("guess-input").addEventListener("keydown", handleKeyPress);
