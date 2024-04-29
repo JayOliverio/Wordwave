@@ -5,6 +5,7 @@
     Description: CSS file for styles of the gameboard interface.
 */
 
+
 /* Text Styles */
 body, input, button {
     font-family: 'Roboto', sans-serif;
@@ -68,3 +69,17 @@ body, input, button {
     padding: 8px;
 }
 
+/* Styling for streak display */
+.streak-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+#streak-display {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    background-color: #ee644c;
+    border-color: #089541;
+    border-radius: 5px;
+    padding: 8px;
+}

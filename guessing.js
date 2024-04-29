@@ -29,6 +29,10 @@ var validWords = [];
 //Loads local saved data
 loadPoints();
 
+// load streak data
+var streak = 0;
+load_streak();
+
 // Checks if gameboard is loaded, loads it if not
 if (!document.getElementById('game-board').innerHTML.trim()) {
     // Generates gameboard
@@ -102,9 +106,6 @@ function makeGuess() {
         return;
     }
 
-
-
-    
     // To upper for compatibility with keyboard
     var wordToGuessUpper = wordToGuess.toUpperCase();
     // Selects row to display guess on gameboard
@@ -143,6 +144,8 @@ function makeGuess() {
     // If the guess was correct, award points
     if (correctGuess) {
         updatePoints(3);
+        // add to streak
+        update_streak();
     }
 
     generateKeyboard();
@@ -150,11 +153,15 @@ function makeGuess() {
     guessCount++;
     document.getElementById('guess-input').value = '';
 
+    if (guessCount == 6) {
+        // reset the streak
+        streak = 0;
+        display_streak();
+    }
 }    
 
 /**
  * Function to generate the dynamic keyboard
- * TO-DO Color changing functionality
  */
 function generateKeyboard() {
     var keyboard = document.getElementById('keyboard');
@@ -284,6 +291,34 @@ function buyHint() {
     hintTile.style.backgroundColor = 'lightblue';
 }
 
+/**
+ * Loads the streak from storage.
+ */
+function load_streak() {
+    var saved_streak = localStorage.getItem('streak');
+    if (saved_streak !== null) {
+        streak = parseInt(saved_streak);
+    }
+    display_streak();
+}
+
+function update_streak() {
+    streak += 1;
+    // save to localstorage
+    localStorage.setItem('streak', streak);
+    display_streak();
+}
+
+function display_streak() {
+    if (streak >= 1) {
+        document.getElementById('streak-display').innerText = "Streak: " + streak;
+    }
+}
+
+/**
+ * get.answer() console command for testing
+ * @returns wordToGuess
+ */
 const get = {
     answer() {
         console.log(wordToGuess);

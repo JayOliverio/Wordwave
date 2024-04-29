@@ -14,17 +14,24 @@
         <input type="text" id="guess-input" maxlength="5">
         <button type="submit">Guess</button>
     </form>
-    <!-- The audio player -->
-    <audio controls>
-        <source src="once-in-paris-168895.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
+    <!-- Streak display -->
+    <div class="streak-wrapper"><div id="streak-display">Streak: <span id="streak-value">0</span></div></div>
+
     <!-- Keyboard container -->
     <div id="keyboard"></div> 
      <!-- Points display -->
      <div id="points-display">Points: <span id="points-value">0</span></div>
      <!-- Hint button display -->
      <div id="hint"><button onclick="buyHint()" id="hint-button">Buy Hint - 5 pts</button></div>
+
+    <!-- The audio player -->
+    <br>
+    <div class='streak-wrapper'>
+        <audio controls>
+            <source src="once-in-paris-168895.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+        </audio>
+    </div>
     <!-- JavaScript file for core functionality -->  
     <script src="guessing.js"></script>
 </body>
