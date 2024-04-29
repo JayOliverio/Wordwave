@@ -130,7 +130,7 @@ function makeGuess() {
             if (!yellow_letters.includes(letter)) {
                 yellow_letters += letter;
             }
-            tiles[i].style.backgroundColor = 'rgb(197, 197, 0)';
+            tiles[i].style.backgroundColor = 'rgb(255, 215, 0)';
             correctGuess = false;
         } else {
             if (!gray_letters.includes(letter)) {
@@ -145,6 +145,7 @@ function makeGuess() {
     // If the guess was correct, award points
     if (correctGuess) {
         updatePoints(3);
+        alert("Congratulations on guessing the word!");
         // add to streak
         updateStreak();
     }
@@ -266,7 +267,7 @@ function loadPoints() {
 function buyHint() {
     // Check if the user has enough points to buy a hint
     if (points < 5) {
-        alert("You don't have enough points to buy a hint.");
+        alert("You don't have enough points to buy a hint. Correctly guess the word to obtain points.");
         return;
     }
 
