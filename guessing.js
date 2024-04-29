@@ -127,12 +127,12 @@ function makeGuess() {
             if (!green_letters.includes(letter)) {
                 green_letters += letter;
             }
-            tiles[i].style.backgroundColor = 'rgb(255, 165, 0)';
+            tiles[i].style.backgroundColor = 'rgb(0, 122, 0)';
         } else if (wordToGuessUpper.includes(letter)) {
             if (!yellow_letters.includes(letter)) {
                 yellow_letters += letter;
             }
-            tiles[i].style.backgroundColor = 'rgb(197, 197, 0)';
+            tiles[i].style.backgroundColor = 'rgb(255, 215, 0)';
             correctGuess = false;
         } else {
             if (!gray_letters.includes(letter)) {
