@@ -31,7 +31,7 @@ loadPoints();
 
 // load streak data
 var streak = 0;
-load_streak();
+loadStreak();
 
 // Checks if gameboard is loaded, loads it if not
 if (!document.getElementById('game-board').innerHTML.trim()) {
@@ -81,12 +81,15 @@ fetch('wordList.txt')
  * @returns 
  */
 function makeGuess() {
-
     // Checks if max guesses have been reached
     if (guessCount >= 6) {
         alert("You've reached the maximum number of guesses.");
+        // Reset the streak and hide the streak display
+        streak = 0;
+        displayStreak();
         return;
     }
+
     // Holds guess-input value from user
     var guess = document.getElementById("guess-input").value.toUpperCase();
     // Checks if guess is the right length
@@ -145,20 +148,20 @@ function makeGuess() {
     if (correctGuess) {
         updatePoints(3);
         // add to streak
-        update_streak();
+        updateStreak();
     }
 
     generateKeyboard();
-
+    
     guessCount++;
-    document.getElementById('guess-input').value = '';
-
-    if (guessCount == 6) {
+    if (guessCount >= 6 && !correctGuess) {
         // reset the streak
-        streak = 0;
-        display_streak();
+        resetStreak();
+        console.log("reseting streak");
     }
-}    
+
+    document.getElementById('guess-input').value = '';
+}
 
 /**
  * Function to generate the dynamic keyboard
@@ -294,25 +297,36 @@ function buyHint() {
 /**
  * Loads the streak from storage.
  */
-function load_streak() {
+function loadStreak() {
     var saved_streak = localStorage.getItem('streak');
     if (saved_streak !== null) {
         streak = parseInt(saved_streak);
     }
-    display_streak();
+    displayStreak();
 }
 
-function update_streak() {
+function updateStreak() {
     streak += 1;
     // save to localstorage
     localStorage.setItem('streak', streak);
-    display_streak();
+    displayStreak();
 }
 
-function display_streak() {
-    if (streak >= 1) {
-        document.getElementById('streak-display').innerText = "Streak: " + streak;
+function displayStreak() {
+    var streakDisplay = document.getElementById('streak-display');
+    if (streak > 0) {
+        streakDisplay.style.display = 'block'; // Set to block when streak is greater than 0
+        streakDisplay.innerText = "Streak: " + streak;
+    } else {
+        streakDisplay.style.display = 'none'; // Set to none when streak is 0
     }
+}
+
+function resetStreak() {
+    console.log("resetStreak() called");
+    streak = 0;
+    localStorage.setItem('streak', streak); // Update localStorage here
+    displayStreak();
 }
 
 /**
@@ -322,6 +336,9 @@ function display_streak() {
 const get = {
     answer() {
         console.log(wordToGuess);
+    },
+    streak() {
+        console.log(streak);
     },
 };
 
