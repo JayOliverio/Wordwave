@@ -23,6 +23,9 @@ var points = 0;
 // Tracks letters revealed by hint so buying new hint reveals new letter
 var revealedHintIndices = [];
 
+// array of valid words
+var validWords = [];
+
 //Loads local saved data
 loadPoints();
 
@@ -51,6 +54,7 @@ fetch('wordList.txt')
         var wordList = data.split('\n');
         // Filters for words with the length 5
         wordList = wordList.filter(word => word.trim().length === 5);
+        validWords = wordList.map(word => word.trim().toUpperCase()).filter(word => word.length === 5);
         if (wordList.length === 0) {
             console.error("No words found from wordList.txt.");
             alert("Using default word 'apple'.");
@@ -66,12 +70,14 @@ fetch('wordList.txt')
         alert("Error fetching word list. Please try again later.");
     });
 
+
 /**
  * Function for user guessing functionality.
  * TO-DO Split color changing functionality from it into another function
  * @returns 
  */
 function makeGuess() {
+
     // Checks if max guesses have been reached
     if (guessCount >= 6) {
         alert("You've reached the maximum number of guesses.");
@@ -90,6 +96,14 @@ function makeGuess() {
         alert("Word contains illegal characters");
         return;
     }
+
+    if (!validWords.includes(guess)) {
+        alert("Word not valid.");
+        return;
+    }
+
+
+
     
     // To upper for compatibility with keyboard
     var wordToGuessUpper = wordToGuess.toUpperCase();
@@ -135,6 +149,7 @@ function makeGuess() {
 
     guessCount++;
     document.getElementById('guess-input').value = '';
+
 }    
 
 /**
