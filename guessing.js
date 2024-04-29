@@ -85,8 +85,6 @@ function makeGuess() {
     if (guessCount >= 6) {
         alert("You've reached the maximum number of guesses.");
         // Reset the streak and hide the streak display
-        streak = 0;
-        displayStreak();
         return;
     }
 
@@ -332,7 +330,6 @@ function displayStreak() {
  * Game lost, reset the streak
  */
 function resetStreak() {
-    console.log("resetStreak() called");
     streak = 0;
     localStorage.setItem('streak', streak);
     displayStreak();
