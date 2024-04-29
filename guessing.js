@@ -146,10 +146,17 @@ function makeGuess() {
 
     // If the guess was correct, award points
     if (correctGuess) {
-        updatePoints(3);
-        alert("Congratulations on guessing the word!");
+        // Checks if guesses in 3 or less
+        if (guessCount <= 3) {
+            // double points if so
+        updatePoints(6);
+        } else {
+            // 3 points for 4 or more guesses
+            updatePoints(3);
+        }
         // add to streak
         updateStreak();
+        alert("Congratulations on guessing the word!");
     }
 
     generateKeyboard();
