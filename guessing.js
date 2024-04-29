@@ -325,5 +325,26 @@ const get = {
     },
 };
 
+// Add an event listener to the dark mode toggle switch
+document.getElementById("dark-mode-toggle").addEventListener("change", function() {
+    var darkModeEnabled = this.checked;
+    toggleDarkMode(darkModeEnabled);
+});
+
+// Function to toggle dark mode
+function toggleDarkMode(darkModeEnabled) {
+    if (darkModeEnabled) {
+        document.body.style.backgroundColor = "rgb(47, 47, 47)"; 
+        document.getElementById("dark-mode-label").style.color = "#fff"; 
+        document.getElementById("points-display").style.color = "#fff";
+
+    } else {
+        document.body.style.backgroundColor = "#fff";
+        document.getElementById("dark-mode-label").style.color = "#333";
+        document.getElementById("points-display").style.color = "#333"
+    }
+}
+
+
 // event listener for enter key press for guess field
 document.getElementById("guess-input").addEventListener("keydown", handleKeyPress);

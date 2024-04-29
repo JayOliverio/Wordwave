@@ -30,7 +30,7 @@ body, input, button {
     width: 50px;
     height: 50px;
     margin: 5px;
-    background-color: rgb(185, 203, 186);
+    background-color: rgb(165, 168, 165);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,3 +83,68 @@ body, input, button {
     border-radius: 5px;
     padding: 8px;
 }
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #444;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.toggle-container {
+    position: fixed;
+    top: 20px; 
+    left: 20px;
+    z-index: 1000;
+  }
+  
+  .toggle-label {
+    color: #000;
+  }
+
+  #dark-mode-label {
+    display: flex;
+    margin-top: 20px;
+  }
