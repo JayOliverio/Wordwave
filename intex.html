@@ -14,7 +14,7 @@
     <!-- Gameboard container -->
     <div id="game-board"></div>
     <!-- User guessing form -->
-    <form id="guess-form" onsubmit="event.preventDefault(); makeGuess();">
+    <form id="guess-form" autocomplete="off" onsubmit="event.preventDefault(); makeGuess();">
         <input type="text" id="guess-input" maxlength="5">
         <button type="submit">Guess</button>
     </form>
