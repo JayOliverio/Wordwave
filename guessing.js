@@ -343,19 +343,6 @@ function resetStreak() {
     displayStreak();
 }
 
-/**
- * get.answer() console command for testing
- * @returns wordToGuess
- */
-const get = {
-    answer() {
-        console.log(wordToGuess);
-    },
-    streak() {
-        console.log(streak);
-    },
-};
-
 // Add an event listener to the dark mode toggle switch
 document.getElementById("dark-mode-toggle").addEventListener("change", function() {
     var darkModeEnabled = this.checked;
