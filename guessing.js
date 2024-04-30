@@ -82,7 +82,7 @@ fetch('wordList.txt')
  */
 function makeGuess() {
     // Checks if max guesses have been reached
-    if (guessCount >= 6) {
+    if (guessCount > 5) {
         alert("You've reached the maximum number of guesses.");
         // Reset the streak and hide the streak display
         return;
