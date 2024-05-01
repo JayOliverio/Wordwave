@@ -145,7 +145,7 @@ function makeGuess() {
     // If the guess was correct, award points
     if (correctGuess) {
         // Checks if guesses in 3 or less
-        if (guessCount <= 3) {
+        if (guessCount <= 2) {
             // double points if so
         updatePoints(6);
         } else {
